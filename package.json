@@ -7,12 +7,15 @@
     "build": "rimraf ./build && tsc",
     "test": "jest",
     "setup": "node src/setup.js",
-    "start": "npm run build && node build/index.js"
+    "start": "npm run build && node build/src/index.js"
   },
-  "author": "Loris Bognanni",
+  "_moduleAliases": {
+    "@lib": "build/lib"
+  },
+    "author": "Loris Bognanni",
   "license": "ISC",
   "devDependencies": {
-    "@types/jest": "^27.0.3",
+    "@types/jest": "^27.5.2",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -35,9 +38,19 @@
     },
     "testEnvironment": "node",
     "testRegex": "./src/.*\\.(test|spec)?\\.(ts|ts)$",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "roots": [
       "<rootDir>/src"
     ]
+  },
+  "dependencies": {
+    "module-alias": "^2.2.3"
   }
 }

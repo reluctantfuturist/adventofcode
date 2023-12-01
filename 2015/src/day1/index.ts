@@ -2,7 +2,7 @@ import { Day } from "@lib/day";
 
 class Day0 extends Day {
   constructor() {
-    super(0, 2023);
+    super(1, 2015);
   }
 
   solveForPartOne(input: string): string {

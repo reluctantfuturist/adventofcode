@@ -1,9 +1,9 @@
-import { Day } from "../day";
+import { Day } from "../../../lib/day";
 import * as fs from "fs";
 
 class Day1 extends Day {
   constructor() {
-    super(1);
+    super(1, 2023);
   }
 
   private convertWordsToDigits(line: string): string {
