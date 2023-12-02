@@ -62,10 +62,11 @@ async function createInputFiles() {
 }
 
 async function copyTemplate(from, to) {
-  const content = (await promises.readFile(from, { encoding: "utf8" })).replace(
-    /super\(0, 2023\);/g,
-    `super(${day}, ${year});`
-  ); // replace the day number and year in the super constructor call
+  const content = (await promises.readFile(from, { encoding: "utf8" }))
+    .replace(/super\(0, 2023\);/g, `super(${day}, ${year});`) // replace the day number and year in the super constructor call
+    .replace(/Day0/g, `Day${day}`) // replace the class name
+    .replace(/day0/g, `day${day}`) // replace the day in the test file
+    .replace(/On Day 0/g, `On Day ${day}`); // replace the day in the test description
   createFileWithContentIfItDoesntExist(to, content);
 }
 
@@ -85,18 +86,23 @@ async function createCodeFiles() {
 
 async function updateIndex() {
   const indexPath = path.join(startPath, "src", "index.ts");
-  const contents = (await promises.readFile(indexPath, { encoding: "utf8" }))
-    .replace(
-      "// MORE IMPORTS HERE",
-      `import day${day}_${year} from '../${year}/src/day${day}/index';
-// MORE IMPORTS HERE`
-    )
-    .replace(
-      "// MORE DAYS HERE",
-      `${year}: { ${day}: day${day}_${year} },
-    // MORE DAYS HERE`
-    );
+  const contents = await promises.readFile(indexPath, { encoding: "utf8" });
+
+  const newImport = `import day${day}_${year} from '../${year}/src/day${day}/index';\n// MORE IMPORTS HERE`;
+  const newContents = contents.replace("// MORE IMPORTS HERE", newImport);
+
+  const yearRegex = new RegExp(`(${year}: \\{[^}]*\\})`);
+  const yearMatch = newContents.match(yearRegex);
+
+  let newYearStr;
+  if (yearMatch) {
+    newYearStr = yearMatch[0].replace("}", `, ${day}: day${day}_${year} }`);
+  } else {
+    newYearStr = `${year}: { ${day}: day${day}_${year} }`;
+  }
+
+  const finalContents = newContents.replace(yearRegex, newYearStr);
 
   console.log("  Updating index");
-  await promises.writeFile(indexPath, contents);
+  await promises.writeFile(indexPath, finalContents);
 }

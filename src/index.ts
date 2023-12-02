@@ -3,12 +3,14 @@ import { Day } from "../lib/day";
 import day0 from "./day0/index";
 import day1_2023 from "../2023/src/day1/index";
 import day1_2015 from "../2015/src/day1/index";
+import day2_2015 from "../2015/src/day2/index";
+import day3_2015 from '../2015/src/day3/index';
 // MORE IMPORTS HERE
 
 const days: { [year: number]: { [dayId: number]: Day } } = {
   0: { 0: day0 },
   2023: { 1: day1_2023 },
-  2015: { 1: day1_2015 },
+  2015: { 1: day1_2015, 2: day2_2015 , 3: day3_2015 },
   // MORE DAYS HERE
 };
 

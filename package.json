@@ -37,7 +37,7 @@
       "^.+\\.ts?$": "ts-jest"
     },
     "testEnvironment": "node",
-    "testRegex": "./src/.*\\.(test|spec)?\\.(ts|ts)$",
+    "testRegex": ".*/[0-9]{4}/src/.*\\.(test|spec)?\\.(ts|tsx)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -47,9 +47,12 @@
       "node"
     ],
     "roots": [
-      "<rootDir>/src"
-    ]
-  },
+      "<rootDir>"
+    ],
+    "moduleNameMapper": {
+      "^@lib/(.*)$": "<rootDir>/build/lib/$1"
+  }
+},
   "dependencies": {
     "module-alias": "^2.2.3"
   }

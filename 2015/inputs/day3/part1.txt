@@ -1,0 +1,1 @@
+{visit https://adventofcode.com/2015/day/3 and paste the part 1 input here}
