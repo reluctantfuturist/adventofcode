@@ -12,7 +12,7 @@
   "_moduleAliases": {
     "@lib": "build/lib"
   },
-    "author": "Loris Bognanni",
+  "author": "Loris Bognanni",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^27.5.2",
@@ -51,8 +51,8 @@
     ],
     "moduleNameMapper": {
       "^@lib/(.*)$": "<rootDir>/build/lib/$1"
-  }
-},
+    }
+  },
   "dependencies": {
     "module-alias": "^2.2.3"
   }
