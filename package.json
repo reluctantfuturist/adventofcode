@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf ./build && tsc",
     "test": "jest",
-    "setup": "node src/setup.js",
+    "setup": "node --max-old-space-size=4096 src/setup.js",
     "start": "npm run build && node build/src/index.js"
   },
   "_moduleAliases": {

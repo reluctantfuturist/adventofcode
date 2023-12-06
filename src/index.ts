@@ -11,12 +11,16 @@ import day5_2015 from '../2015/src/day5/index';
 import day3_2023 from '../2023/src/day3/index';
 import day6_2015 from '../2015/src/day6/index';
 import day4_2023 from '../2023/src/day4/index';
+import day7_2015 from '../2015/src/day7/index';
+import day8_2015 from '../2015/src/day8/index';
+import day9_2015 from '../2015/src/day9/index';
+import day5_2023 from '../2023/src/day5/index';
 // MORE IMPORTS HERE
 
 const days: { [year: number]: { [dayId: number]: Day } } = {
   0: { 0: day0 },
-  2023: { 1: day1_2023 , 2: day2_2023 , 3: day3_2023 , 4: day4_2023 },
-  2015: { 1: day1_2015, 2: day2_2015 , 3: day3_2015 , 4: day4_2015 , 5: day5_2015 , 6: day6_2015 },
+  2023: { 1: day1_2023 , 2: day2_2023 , 3: day3_2023 , 4: day4_2023 , 5: day5_2023 },
+  2015: { 1: day1_2015, 2: day2_2015 , 3: day3_2015 , 4: day4_2015 , 5: day5_2015 , 6: day6_2015 , 7: day7_2015 , 8: day8_2015 , 9: day9_2015 },
   // MORE DAYS HERE
 };
 

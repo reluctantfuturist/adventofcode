@@ -1,6 +1,6 @@
 
 > adventofcode-typescript-starter@1.0.0 start
-> npm run build && node build/src/index.js 2023 4
+> npm run build && node build/src/index.js 2023 5
 
 
 > adventofcode-typescript-starter@1.0.0 build
@@ -12,13 +12,19 @@
    ADVENT OF CODE 
 
 
+Time elapsed: 0.00 seconds
 Part 1 result:
 
-23028
+35
 
 
-Total cards processed: 629065
-Time elapsed: 59281.80 milliseconds
+Total seed ranges to process: 2
+Processing range 1 of 2: Start=79, Length=14
+New lowest location found: 82 at seed 79
+New lowest location found: 46 at seed 82
+Processing range 2 of 2: Start=55, Length=13
+Time elapsed: 0.00 seconds
+Lowest location found: 46
 Part 2 result:
 
-629065
+46
