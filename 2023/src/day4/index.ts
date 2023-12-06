@@ -76,7 +76,7 @@ class Day4 extends Day {
     const minutes = Math.floor(timeElapsed / 60);
     const seconds = timeElapsed % 60;
 
-    console.log(`Total cards processed: ${totalCards}`);
+    //    console.log(`Total cards processed: ${totalCards}`);
     if (minutes > 0) {
       console.log(
         `Time elapsed: ${minutes} minutes, ${seconds.toFixed(2)} seconds`
