@@ -77,14 +77,14 @@ class Day4 extends Day {
     const seconds = timeElapsed % 60;
 
     //    console.log(`Total cards processed: ${totalCards}`);
-    if (minutes > 0) {
+    /*     if (minutes > 0) {
       console.log(
         `Time elapsed: ${minutes} minutes, ${seconds.toFixed(2)} seconds`
       );
     } else {
       console.log(`Time elapsed: ${seconds.toFixed(2)} seconds`);
     }
-
+ */
     return totalCards.toString();
   }
 }

@@ -94,14 +94,14 @@ class Day5 extends Day {
     const minutes = Math.floor(timeElapsed / 60);
     const seconds = timeElapsed % 60;
 
-    if (minutes > 0) {
+    /*     if (minutes > 0) {
       console.log(
         `Time elapsed: ${minutes} minutes, ${seconds.toFixed(2)} seconds`
       );
     } else {
       console.log(`Time elapsed: ${seconds.toFixed(2)} seconds`);
     }
-
+ */
     return lowestLocation;
   }
 
@@ -145,7 +145,7 @@ class Day5 extends Day {
     const minutes = Math.floor(timeElapsed / 60);
     const seconds = timeElapsed % 60;
 
-    if (minutes > 0) {
+    /*     if (minutes > 0) {
       console.log(
         `Part Two Time elapsed: ${minutes} minutes, ${seconds.toFixed(
           2
@@ -154,7 +154,7 @@ class Day5 extends Day {
     } else {
       console.log(`Part Two Time elapsed: ${seconds.toFixed(2)} seconds`);
     }
-
+ */
     return result;
   }
 }

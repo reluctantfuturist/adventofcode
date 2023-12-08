@@ -1,0 +1,1 @@
+{visit https://adventofcode.com/2023/day/8 and paste the part 1 input here}
