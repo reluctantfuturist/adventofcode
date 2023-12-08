@@ -245,13 +245,14 @@ class Day7 extends Day {
       const winnings = hand.bid * rank;
       totalWinnings += winnings;
 
-      console.log(
+      /*       console.log(
         `Hand: ${hand.hand.originalCards.join(
           ""
         )}, New hand: ${hand.hand.jokerReplacedHand.join("")} Bid: ${
           hand.bid
         }, Rank: ${rank}, Winnings: ${winnings}`
       );
+ */
     });
 
     return totalWinnings.toString();
