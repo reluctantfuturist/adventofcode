@@ -113,20 +113,23 @@ class Day10 extends Day {
     return Math.floor(steps / 2);
   }
 
-  private printGrid(grid: string[][], visited: boolean[][]): void {
+  private printGrid(grid: string[][], visited: boolean[][]): string[][] {
+    let newGrid: string[][] = [];
     for (let y = 0; y < grid.length; y++) {
-      let row = "";
+      let row = [];
       for (let x = 0; x < grid[y].length; x++) {
         if (grid[y][x] === "." && !visited[y][x]) {
-          row += "I"; // Mark unvisited dot cells as inside
+          row.push("I"); // Mark unvisited dot cells as inside
         } else if (grid[y][x] === ".") {
-          row += "O"; // Mark visited dot cells as outside
+          row.push("O"); // Mark visited dot cells as outside
         } else {
-          row += grid[y][x]; // Keep original tile
+          row.push(grid[y][x]); // Keep original tile
         }
       }
-      console.log(row);
+      newGrid.push(row);
+      console.log(row.join(""));
     }
+    return newGrid;
   }
 
   private sameRowPairs = ["||", "JL", "7F", "JF", "7L", "7|", "J|", "|L", "|F"];
@@ -172,6 +175,7 @@ class Day10 extends Day {
       this.floodFill(grid, x + dx[i], y + dy[i], visited);
     }
   }
+
   solveForPartOne(input: string): string {
     const grid = this.parseGrid(input);
     const [startX, startY] = this.findStart(grid);
@@ -194,8 +198,10 @@ class Day10 extends Day {
       this.floodFill(grid, grid[0].length - 1, y, visited);
     }
 
-    this.printGrid(grid, visited);
-    const insideCount = grid.flat().filter((cell) => cell === ".").length; // Change this line
+    const updatedGrid = this.printGrid(grid, visited);
+    const insideCount = updatedGrid
+      .flat()
+      .filter((cell) => cell === "I").length;
     return insideCount.toString();
   }
 }
