@@ -129,123 +129,49 @@ class Day10 extends Day {
     }
   }
 
-  private isSqueezableGap(
-    grid: string[][],
-    x: number,
-    y: number,
-    direction: "horizontal" | "vertical"
-  ): boolean {
-    // Check horizontally adjacent tiles (same row, adjacent columns)
-    if (direction === "vertical" && x < grid[0].length - 1) {
-      const horizontalPair = grid[y][x] + grid[y][x + 1];
-      const horizontalPairs = [
-        "||",
-        "JL",
-        "7F",
-        "JF",
-        "7L",
-        "7|",
-        "J|",
-        "|L",
-        "|F",
-      ];
-      if (horizontalPairs.includes(horizontalPair)) {
-        console.log(
-          `Squeezable gap encountered horizontally at (${y}, ${x}) and (${y}, ${
-            x + 1
-          }) forming '${horizontalPair}'`
-        );
-        return true;
-      }
-    }
+  private sameRowPairs = ["||", "JL", "7F", "JF", "7L", "7|", "J|", "|L", "|F"];
 
-    // Check vertically adjacent tiles (adjacent rows, same column)
-    if (direction === "horizontal" && y < grid.length - 1) {
-      const verticalPair = grid[y][x] + grid[y + 1][x];
-      const verticalPairs = [
-        "--",
-        "-7",
-        "-F",
-        "J-",
-        "L-",
-        "JF",
-        "J7",
-        "LF",
-        "L7",
-      ];
-      if (verticalPairs.includes(verticalPair)) {
-        console.log(
-          `Squeezable gap encountered vertically at (${y}, ${x}) and (${
-            y + 1
-          }, ${x}) forming '${verticalPair}'`
-        );
-        return true;
-      }
-    }
-
-    return false;
-  }
+  private sameColumnlPairs = [
+    "--",
+    "-7",
+    "-F",
+    "J-",
+    "L-",
+    "JF",
+    "J7",
+    "LF",
+    "L7",
+  ];
 
   private floodFill(
     grid: string[][],
-    visited: boolean[][],
     x: number,
-    y: number
+    y: number,
+    visited: boolean[][]
   ): void {
     if (
       x < 0 ||
-      y < 0 ||
       x >= grid[0].length ||
+      y < 0 ||
       y >= grid.length ||
-      visited[y][x]
+      visited[y][x] ||
+      ["|", "-", "7", "F", "J", "L", "S"].includes(grid[y][x]) // Add this line
     ) {
       return;
     }
 
     visited[y][x] = true;
-    console.log(`Visiting (${x}, ${y}), Tile: ${grid[y][x]}`);
 
-    // Check each direction with respect to squeezable gaps
-    this.checkAndFill(grid, visited, x - 1, y, "vertical"); // Left
-    this.checkAndFill(grid, visited, x + 1, y, "vertical"); // Right
-    this.checkAndFill(grid, visited, x, y - 1, "horizontal"); // Up
-    this.checkAndFill(grid, visited, x, y + 1, "horizontal"); // Down
-  }
+    // Mark all reachable cells as outside by default
+    grid[y][x] = "O";
 
-  private checkAndFill(
-    grid: string[][],
-    visited: boolean[][],
-    x: number,
-    y: number,
-    direction: "horizontal" | "vertical"
-  ): void {
-    if (
-      x >= 0 &&
-      y >= 0 &&
-      x < grid[0].length &&
-      y < grid.length &&
-      !visited[y][x]
-    ) {
-      if (this.isSqueezableGap(grid, x, y, direction)) {
-        console.log(
-          `Encountered squeezable gap at (${x}, ${y}), direction: ${direction}`
-        );
-      } else {
-        this.floodFill(grid, visited, x, y);
-      }
+    const dx = [-1, 1, 0, 0];
+    const dy = [0, 0, -1, 1];
+
+    for (let i = 0; i < 4; i++) {
+      this.floodFill(grid, x + dx[i], y + dy[i], visited);
     }
   }
-
-  private markInteriorTiles(grid: string[][], visited: boolean[][]): void {
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        if (!visited[y][x] && grid[y][x] === ".") {
-          grid[y][x] = "I"; // Mark as inside
-        }
-      }
-    }
-  }
-
   solveForPartOne(input: string): string {
     const grid = this.parseGrid(input);
     const [startX, startY] = this.findStart(grid);
@@ -254,33 +180,22 @@ class Day10 extends Day {
 
   public solveForPartTwo(input: string): string {
     const grid = this.parseGrid(input);
-    const visited = grid.map((row) => row.map(() => false));
+    const visited = Array(grid.length)
+      .fill(0)
+      .map(() => Array(grid[0].length).fill(false));
 
-    // Perform flood fill from the edges
+    // Perform flood fill from all cells on the edge of the grid
     for (let x = 0; x < grid[0].length; x++) {
-      this.floodFill(grid, visited, x, 0);
-      this.floodFill(grid, visited, x, grid.length - 1);
+      this.floodFill(grid, x, 0, visited);
+      this.floodFill(grid, x, grid.length - 1, visited);
     }
     for (let y = 0; y < grid.length; y++) {
-      this.floodFill(grid, visited, 0, y);
-      this.floodFill(grid, visited, grid[0].length - 1, y);
+      this.floodFill(grid, 0, y, visited);
+      this.floodFill(grid, grid[0].length - 1, y, visited);
     }
-
-    // Mark interior tiles
-    this.markInteriorTiles(grid, visited);
 
     this.printGrid(grid, visited);
-
-    // Count the number of inside cells
-    let insideCount = 0;
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        if (grid[y][x] === "I") {
-          insideCount++;
-        }
-      }
-    }
-
+    const insideCount = grid.flat().filter((cell) => cell === ".").length; // Change this line
     return insideCount.toString();
   }
 }
