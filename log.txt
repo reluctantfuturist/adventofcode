@@ -1,40 +1,276 @@
 
-> adventofcode-typescript-starter@1.0.0 start
-> npm run build && node build/src/index.js 2023 10
 
-
-> adventofcode-typescript-starter@1.0.0 build
-> rimraf ./build && tsc
-
-
-
-
-   ADVENT OF CODE 
-
-
-Part 1 result:
-
-7030
-
-
-OOOOOOOOOO
-OS------7O
-O|F----7|O
-O||IIII||O
-O||IIII||O
-O|L-7F-J|O
-O|II||II|O
-OL--JL--JO
-OOOOOOOOOO
-          
-          
-          
-          
-          
-          
-          
-          
-          
+Current position: (1, 1), Direction: S
+Current position: (1, 1), Direction: S, Next Direction: S
+Moving to: (1, 2), Steps: 1
+Current position: (1, 2), Direction: S
+Current position: (1, 2), Direction: S, Next Direction: S
+Moving to: (1, 3), Steps: 2
+Current position: (1, 3), Direction: S
+Current position: (1, 3), Direction: S, Next Direction: S
+Moving to: (1, 4), Steps: 3
+Current position: (1, 4), Direction: S
+Current position: (1, 4), Direction: S, Next Direction: S
+Moving to: (1, 5), Steps: 4
+Current position: (1, 5), Direction: S
+Current position: (1, 5), Direction: S, Next Direction: S
+Moving to: (1, 6), Steps: 5
+Current position: (1, 6), Direction: S
+Current position: (1, 6), Direction: S, Next Direction: S
+Moving to: (1, 7), Steps: 6
+Current position: (1, 7), Direction: S
+Current position: (1, 7), Direction: S, Next Direction: E
+Moving to: (2, 7), Steps: 7
+Current position: (2, 7), Direction: E
+Current position: (2, 7), Direction: E, Next Direction: E
+Moving to: (3, 7), Steps: 8
+Current position: (3, 7), Direction: E
+Current position: (3, 7), Direction: E, Next Direction: E
+Moving to: (4, 7), Steps: 9
+Current position: (4, 7), Direction: E
+Current position: (4, 7), Direction: E, Next Direction: N
+Moving to: (4, 6), Steps: 10
+Current position: (4, 6), Direction: N
+Current position: (4, 6), Direction: N, Next Direction: N
+Moving to: (4, 5), Steps: 11
+Current position: (4, 5), Direction: N
+Current position: (4, 5), Direction: N, Next Direction: W
+Moving to: (3, 5), Steps: 12
+Current position: (3, 5), Direction: W
+Current position: (3, 5), Direction: W, Next Direction: W
+Moving to: (2, 5), Steps: 13
+Current position: (2, 5), Direction: W
+Current position: (2, 5), Direction: W, Next Direction: N
+Moving to: (2, 4), Steps: 14
+Current position: (2, 4), Direction: N
+Current position: (2, 4), Direction: N, Next Direction: N
+Moving to: (2, 3), Steps: 15
+Current position: (2, 3), Direction: N
+Current position: (2, 3), Direction: N, Next Direction: N
+Moving to: (2, 2), Steps: 16
+Current position: (2, 2), Direction: N
+Current position: (2, 2), Direction: N, Next Direction: E
+Moving to: (3, 2), Steps: 17
+Current position: (3, 2), Direction: E
+Current position: (3, 2), Direction: E, Next Direction: E
+Moving to: (4, 2), Steps: 18
+Current position: (4, 2), Direction: E
+Current position: (4, 2), Direction: E, Next Direction: E
+Moving to: (5, 2), Steps: 19
+Current position: (5, 2), Direction: E
+Current position: (5, 2), Direction: E, Next Direction: E
+Moving to: (6, 2), Steps: 20
+Current position: (6, 2), Direction: E
+Current position: (6, 2), Direction: E, Next Direction: E
+Moving to: (7, 2), Steps: 21
+Current position: (7, 2), Direction: E
+Current position: (7, 2), Direction: E, Next Direction: S
+Moving to: (7, 3), Steps: 22
+Current position: (7, 3), Direction: S
+Current position: (7, 3), Direction: S, Next Direction: S
+Moving to: (7, 4), Steps: 23
+Current position: (7, 4), Direction: S
+Current position: (7, 4), Direction: S, Next Direction: S
+Moving to: (7, 5), Steps: 24
+Current position: (7, 5), Direction: S
+Current position: (7, 5), Direction: S, Next Direction: W
+Moving to: (6, 5), Steps: 25
+Current position: (6, 5), Direction: W
+Current position: (6, 5), Direction: W, Next Direction: W
+Moving to: (5, 5), Steps: 26
+Current position: (5, 5), Direction: W
+Current position: (5, 5), Direction: W, Next Direction: S
+Moving to: (5, 6), Steps: 27
+Current position: (5, 6), Direction: S
+Current position: (5, 6), Direction: S, Next Direction: S
+Moving to: (5, 7), Steps: 28
+Current position: (5, 7), Direction: S
+Current position: (5, 7), Direction: S, Next Direction: E
+Moving to: (6, 7), Steps: 29
+Current position: (6, 7), Direction: E
+Current position: (6, 7), Direction: E, Next Direction: E
+Moving to: (7, 7), Steps: 30
+Current position: (7, 7), Direction: E
+Current position: (7, 7), Direction: E, Next Direction: E
+Moving to: (8, 7), Steps: 31
+Current position: (8, 7), Direction: E
+Current position: (8, 7), Direction: E, Next Direction: N
+Moving to: (8, 6), Steps: 32
+Current position: (8, 6), Direction: N
+Current position: (8, 6), Direction: N, Next Direction: N
+Moving to: (8, 5), Steps: 33
+Current position: (8, 5), Direction: N
+Current position: (8, 5), Direction: N, Next Direction: N
+Moving to: (8, 4), Steps: 34
+Current position: (8, 4), Direction: N
+Current position: (8, 4), Direction: N, Next Direction: N
+Moving to: (8, 3), Steps: 35
+Current position: (8, 3), Direction: N
+Current position: (8, 3), Direction: N, Next Direction: N
+Moving to: (8, 2), Steps: 36
+Current position: (8, 2), Direction: N
+Current position: (8, 2), Direction: N, Next Direction: N
+Moving to: (8, 1), Steps: 37
+Current position: (8, 1), Direction: N
+Current position: (8, 1), Direction: N, Next Direction: W
+Moving to: (7, 1), Steps: 38
+Current position: (7, 1), Direction: W
+Current position: (7, 1), Direction: W, Next Direction: W
+Moving to: (6, 1), Steps: 39
+Current position: (6, 1), Direction: W
+Current position: (6, 1), Direction: W, Next Direction: W
+Moving to: (5, 1), Steps: 40
+Current position: (5, 1), Direction: W
+Current position: (5, 1), Direction: W, Next Direction: W
+Moving to: (4, 1), Steps: 41
+Current position: (4, 1), Direction: W
+Current position: (4, 1), Direction: W, Next Direction: W
+Moving to: (3, 1), Steps: 42
+Current position: (3, 1), Direction: W
+Current position: (3, 1), Direction: W, Next Direction: W
+Moving to: (2, 1), Steps: 43
+Current position: (2, 1), Direction: W
+Current position: (2, 1), Direction: W, Next Direction: W
+Moving to: (1, 1), Steps: 44
+Current position: (1, 1), Direction: W
+Loop completed
+Cell (0, 0) is outside
+Cell (1, 0) is outside
+Cell (2, 0) is outside
+Cell (3, 0) is outside
+Cell (4, 0) is outside
+Cell (5, 0) is outside
+Cell (6, 0) is outside
+Cell (7, 0) is outside
+Cell (8, 0) is outside
+Cell (9, 0) is outside
+Ray intersects at (1, 1), Direction: S, RayCount: 1
+Ray intersects at (8, 1), Direction: N, RayCount: 2
+Cell (0, 1) is outside
+Cell (1, 1) is outside
+Cell (2, 1) is outside
+Cell (3, 1) is outside
+Cell (4, 1) is outside
+Cell (5, 1) is outside
+Cell (6, 1) is outside
+Cell (7, 1) is outside
+Cell (8, 1) is outside
+Cell (9, 1) is outside
+Ray intersects at (1, 2), Direction: S, RayCount: 1
+Ray intersects at (2, 2), Direction: N, RayCount: 2
+Ray intersects at (8, 2), Direction: N, RayCount: 3
+Cell (0, 2) is inside
+Cell (1, 2) is outside
+Cell (2, 2) is outside
+Cell (3, 2) is outside
+Cell (4, 2) is outside
+Cell (5, 2) is outside
+Cell (6, 2) is outside
+Cell (7, 2) is outside
+Cell (8, 2) is outside
+Cell (9, 2) is outside
+Ray intersects at (1, 3), Direction: S, RayCount: 1
+Ray intersects at (2, 3), Direction: N, RayCount: 2
+Ray intersects at (7, 3), Direction: S, RayCount: 3
+Ray intersects at (8, 3), Direction: N, RayCount: 4
+Cell (0, 3) is outside
+Cell (1, 3) is outside
+Cell (2, 3) is outside
+Ray intersects at (7, 3), Direction: S, RayCount: 1
+Ray intersects at (8, 3), Direction: N, RayCount: 2
+Cell (3, 3) is outside
+Ray intersects at (7, 3), Direction: S, RayCount: 1
+Ray intersects at (8, 3), Direction: N, RayCount: 2
+Cell (4, 3) is outside
+Ray intersects at (7, 3), Direction: S, RayCount: 1
+Ray intersects at (8, 3), Direction: N, RayCount: 2
+Cell (5, 3) is outside
+Ray intersects at (7, 3), Direction: S, RayCount: 1
+Ray intersects at (8, 3), Direction: N, RayCount: 2
+Cell (6, 3) is outside
+Cell (7, 3) is outside
+Cell (8, 3) is outside
+Cell (9, 3) is outside
+Ray intersects at (1, 4), Direction: S, RayCount: 1
+Ray intersects at (2, 4), Direction: N, RayCount: 2
+Ray intersects at (7, 4), Direction: S, RayCount: 3
+Ray intersects at (8, 4), Direction: N, RayCount: 4
+Cell (0, 4) is outside
+Cell (1, 4) is outside
+Cell (2, 4) is outside
+Ray intersects at (7, 4), Direction: S, RayCount: 1
+Ray intersects at (8, 4), Direction: N, RayCount: 2
+Cell (3, 4) is outside
+Ray intersects at (7, 4), Direction: S, RayCount: 1
+Ray intersects at (8, 4), Direction: N, RayCount: 2
+Cell (4, 4) is outside
+Ray intersects at (7, 4), Direction: S, RayCount: 1
+Ray intersects at (8, 4), Direction: N, RayCount: 2
+Cell (5, 4) is outside
+Ray intersects at (7, 4), Direction: S, RayCount: 1
+Ray intersects at (8, 4), Direction: N, RayCount: 2
+Cell (6, 4) is outside
+Cell (7, 4) is outside
+Cell (8, 4) is outside
+Cell (9, 4) is outside
+Ray intersects at (1, 5), Direction: S, RayCount: 1
+Ray intersects at (4, 5), Direction: N, RayCount: 2
+Ray intersects at (7, 5), Direction: S, RayCount: 3
+Ray intersects at (8, 5), Direction: N, RayCount: 4
+Cell (0, 5) is outside
+Cell (1, 5) is outside
+Cell (2, 5) is outside
+Cell (3, 5) is outside
+Cell (4, 5) is outside
+Cell (5, 5) is outside
+Cell (6, 5) is outside
+Cell (7, 5) is outside
+Cell (8, 5) is outside
+Cell (9, 5) is outside
+Ray intersects at (1, 6), Direction: S, RayCount: 1
+Ray intersects at (4, 6), Direction: N, RayCount: 2
+Ray intersects at (5, 6), Direction: S, RayCount: 3
+Ray intersects at (8, 6), Direction: N, RayCount: 4
+Cell (0, 6) is outside
+Cell (1, 6) is outside
+Ray intersects at (4, 6), Direction: N, RayCount: 1
+Ray intersects at (5, 6), Direction: S, RayCount: 2
+Ray intersects at (8, 6), Direction: N, RayCount: 3
+Cell (2, 6) is inside
+Ray intersects at (4, 6), Direction: N, RayCount: 1
+Ray intersects at (5, 6), Direction: S, RayCount: 2
+Ray intersects at (8, 6), Direction: N, RayCount: 3
+Cell (3, 6) is inside
+Cell (4, 6) is outside
+Cell (5, 6) is outside
+Ray intersects at (8, 6), Direction: N, RayCount: 1
+Cell (6, 6) is inside
+Ray intersects at (8, 6), Direction: N, RayCount: 1
+Cell (7, 6) is inside
+Cell (8, 6) is outside
+Cell (9, 6) is outside
+Ray intersects at (1, 7), Direction: S, RayCount: 1
+Ray intersects at (5, 7), Direction: S, RayCount: 2
+Cell (0, 7) is outside
+Cell (1, 7) is outside
+Cell (2, 7) is outside
+Cell (3, 7) is outside
+Cell (4, 7) is outside
+Cell (5, 7) is outside
+Cell (6, 7) is outside
+Cell (7, 7) is outside
+Cell (8, 7) is outside
+Cell (9, 7) is outside
+Cell (0, 8) is outside
+Cell (1, 8) is outside
+Cell (2, 8) is outside
+Cell (3, 8) is outside
+Cell (4, 8) is outside
+Cell (5, 8) is outside
+Cell (6, 8) is outside
+Cell (7, 8) is outside
+Cell (8, 8) is outside
+Cell (9, 8) is outside
 Part 2 result:
 
-46
+5

@@ -37,80 +37,116 @@ class Day10 extends Day {
     grid: string[][],
     startX: number,
     startY: number
-  ): number {
+  ): [number, Map<string, string>] {
     let currentDirection = this.getInitialDirection(grid, startX, startY);
     let [x, y] = [startX, startY];
     let steps = 0;
+    let vectorsMap = new Map<string, string>();
 
     while (true) {
-      if (y < 0 || y >= grid.length || x < 0 || x >= grid[y].length) {
-        console.log("Out of grid bounds");
-        return -1;
+      if (!(x === startX && y === startY && steps > 0)) {
+        // Exclude updating the start cell when loop closes
+        // Record the incoming direction for the current cell
+        vectorsMap.set(`${x},${y}`, currentDirection);
       }
 
-      const currentTile = grid[y][x];
-      // Determine next direction based on current tile and direction
-      switch (currentTile) {
-        case "|":
-          if (currentDirection !== "N" && currentDirection !== "S") break; // Invalid move
-          break;
-        case "-":
-          if (currentDirection !== "E" && currentDirection !== "W") break; // Invalid move
-          break;
-        case "L":
-          currentDirection =
-            currentDirection === "S"
-              ? "E"
-              : currentDirection === "W"
-              ? "N"
-              : currentDirection;
-          break;
-        case "J":
-          currentDirection =
-            currentDirection === "S"
-              ? "W"
-              : currentDirection === "E"
-              ? "N"
-              : currentDirection;
-          break;
-        case "7":
-          currentDirection =
-            currentDirection === "N"
-              ? "W"
-              : currentDirection === "E"
-              ? "S"
-              : currentDirection;
-          break;
-        case "F":
-          currentDirection =
-            currentDirection === "N"
-              ? "E"
-              : currentDirection === "W"
-              ? "S"
-              : currentDirection;
-          break;
-        case "S":
-          if (steps > 0) {
-            //            console.log("Loop completed");
-            return Math.floor(steps / 2);
-          }
-          break;
+      console.log(
+        `Current position: (${x}, ${y}), Direction: ${currentDirection}`
+      );
+
+      // Check if we're at the loop's end
+      if (grid[y][x] === "S" && steps > 0) {
+        console.log("Loop completed");
+        break;
       }
 
-      if (!currentDirection) {
+      // Determine the next direction based on the current tile and direction
+      const nextDirection = this.determineNextDirection(
+        grid[y][x],
+        currentDirection,
+        steps
+      );
+      console.log(
+        `Current position: (${x}, ${y}), Direction: ${currentDirection}, Next Direction: ${nextDirection}`
+      );
+
+      // Update the current direction for the next iteration
+      if (nextDirection) {
+        currentDirection = nextDirection;
+      } else {
         console.log("No valid direction found");
-        break; // Break if no valid direction found
+        break;
       }
 
-      // Update position and distance
+      // Move to the next cell
       const [dx, dy] = this.directions[currentDirection];
       x += dx;
       y += dy;
       steps++;
+      console.log(`Moving to: (${x}, ${y}), Steps: ${steps}`);
 
-      //      console.log("Total steps:", steps);
+      // Check if we are out of grid bounds
+      if (y < 0 || y >= grid.length || x < 0 || x >= grid[y].length) {
+        console.log("Out of grid bounds");
+        return [-1, vectorsMap];
+      }
     }
-    return Math.floor(steps / 2);
+
+    return [Math.floor(steps / 2), vectorsMap];
+  }
+
+  private determineNextDirection(
+    currentTile: string,
+    currentDirection: string,
+    steps: number
+  ): string | null {
+    // Special handling for the start tile ('S') at the beginning of traversal
+    if (currentTile === "S" && steps === 0) {
+      return currentDirection;
+    }
+    switch (currentTile) {
+      case "|":
+        // Continue in the same direction if it's north or south
+        return currentDirection === "N" || currentDirection === "S"
+          ? currentDirection
+          : null;
+      case "-":
+        // Continue in the same direction if it's east or west
+        return currentDirection === "E" || currentDirection === "W"
+          ? currentDirection
+          : null;
+      case "L":
+        // Change direction based on current direction
+        return currentDirection === "S"
+          ? "E"
+          : currentDirection === "W"
+          ? "N"
+          : null;
+      case "J":
+        // Change direction based on current direction
+        return currentDirection === "S"
+          ? "W"
+          : currentDirection === "E"
+          ? "N"
+          : null;
+      case "7":
+        // Change direction based on current direction
+        return currentDirection === "N"
+          ? "W"
+          : currentDirection === "E"
+          ? "S"
+          : null;
+      case "F":
+        // Change direction based on current direction
+        return currentDirection === "N"
+          ? "E"
+          : currentDirection === "W"
+          ? "S"
+          : null;
+      default:
+        // For other cases like 'S', return null as there's no next direction
+        return null;
+    }
   }
 
   private printGrid(grid: string[][], visited: boolean[][]): void {
@@ -129,14 +165,76 @@ class Day10 extends Day {
     }
   }
 
+  private isInside(
+    cellX: number,
+    cellY: number,
+    grid: string[][],
+    vectorsMap: Map<string, string>
+  ): boolean {
+    let rayCount = 0;
+
+    // Skip the ray casting for boundary cells
+    const currentKey = `${cellX},${cellY}`;
+    if (vectorsMap.has(currentKey)) {
+      return false;
+    }
+
+    for (let x = cellX; x < grid[0].length; x++) {
+      const key = `${x},${cellY}`;
+      if (vectorsMap.has(key)) {
+        const incomingDirection = vectorsMap.get(key);
+
+        // Check if the ray intersects the loop with incoming direction
+        if (incomingDirection === "N" || incomingDirection === "S") {
+          rayCount++;
+          console.log(
+            `Ray intersects at (${x}, ${cellY}), Direction: ${incomingDirection}, RayCount: ${rayCount}`
+          );
+        }
+      }
+    }
+
+    return rayCount % 2 !== 0;
+  }
+
+  public findCellsInsideLoop(grid: string[][]): boolean[][] {
+    const [startX, startY] = this.findStart(grid); // Assuming you have a method to find loop start
+    const [_, vectorsMap] = this.traverseAndFindFarthest(grid, startX, startY);
+    const insideMap = grid.map((row) => row.map(() => false));
+
+    for (let y = 0; y < grid.length; y++) {
+      for (let x = 0; x < grid[y].length; x++) {
+        const isInsideCell = this.isInside(x, y, grid, vectorsMap);
+        insideMap[y][x] = isInsideCell;
+        console.log(
+          `Cell (${x}, ${y}) is ${isInsideCell ? "inside" : "outside"}`
+        );
+      }
+    }
+
+    return insideMap;
+  }
+
   solveForPartOne(input: string): string {
     const grid = this.parseGrid(input);
     const [startX, startY] = this.findStart(grid);
-    return this.traverseAndFindFarthest(grid, startX, startY).toString();
+    return this.traverseAndFindFarthest(grid, startX, startY)[0].toString();
   }
 
   public solveForPartTwo(input: string): string {
-    return input.toString();
+    const grid = this.parseGrid(input); // Assuming you have a method to parse the input string into a grid
+    const insideMap = this.findCellsInsideLoop(grid);
+
+    let insideCount = 0;
+    for (let row of insideMap) {
+      for (let cell of row) {
+        if (cell) {
+          insideCount++;
+        }
+      }
+    }
+
+    return insideCount.toString();
   }
 }
 
