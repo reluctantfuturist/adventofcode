@@ -129,84 +129,6 @@ class Day10 extends Day {
     }
   }
 
-  private sameRowPairs = ["||", "JL", "7F", "JF", "7L", "7|", "J|", "|L", "|F"];
-
-  private sameColumnlPairs = [
-    "--",
-    "-7",
-    "-F",
-    "J-",
-    "L-",
-    "JF",
-    "J7",
-    "LF",
-    "L7",
-  ];
-
-  private adjacentCellPair(
-    grid: string[][],
-    x: number,
-    y: number,
-    fromDirection: string
-  ) {
-    // Returns a pair of cells adjacent to the current cell with coordinates (x,y) in the direction of the flood
-    const adjacentCell1 =
-      fromDirection === "N"
-        ? grid[y + 1]?.[x]
-        : fromDirection === "S"
-        ? grid[y - 1]?.[x]
-        : fromDirection === "E"
-        ? grid[y]?.[x - 1]
-        : fromDirection === "W"
-        ? grid[y]?.[x + 1]
-        : null;
-
-    const adjacentCell2 =
-      fromDirection === "N"
-        ? grid[y + 1]?.[x - 1] || grid[y + 1]?.[x + 1]
-        : fromDirection === "S"
-        ? grid[y - 1]?.[x - 1] || grid[y - 1]?.[x + 1]
-        : fromDirection === "E"
-        ? grid[y - 1]?.[x - 1] || grid[y + 1]?.[x - 1]
-        : fromDirection === "W"
-        ? grid[y - 1]?.[x + 1] || grid[y + 1]?.[x + 1]
-        : null;
-
-    const pair = `${adjacentCell1}${adjacentCell2}`;
-
-    return pair;
-  }
-
-  private floodFill(
-    grid: string[][],
-    x: number,
-    y: number,
-    visited: boolean[][]
-  ): void {
-    if (
-      x < 0 ||
-      x >= grid[0].length ||
-      y < 0 ||
-      y >= grid.length ||
-      visited[y][x] ||
-      ["|", "-", "7", "F", "J", "L", "S"].includes(grid[y][x]) // Add this line
-    ) {
-      return;
-    }
-
-    visited[y][x] = true;
-
-    // Mark all reachable cells as outside by default
-    grid[y][x] = "O";
-
-    const dx = [-1, 1, 0, 0];
-    const dy = [0, 0, -1, 1];
-
-    for (let i = 0; i < 4; i++) {
-      this.floodFill(grid, x + dx[i], y + dy[i], visited);
-    }
-  }
-
   solveForPartOne(input: string): string {
     const grid = this.parseGrid(input);
     const [startX, startY] = this.findStart(grid);
@@ -214,24 +136,7 @@ class Day10 extends Day {
   }
 
   public solveForPartTwo(input: string): string {
-    const grid = this.parseGrid(input);
-    const visited = Array(grid.length)
-      .fill(0)
-      .map(() => Array(grid[0].length).fill(false));
-
-    // Perform flood fill from all cells on the edge of the grid
-    for (let x = 0; x < grid[0].length; x++) {
-      this.floodFill(grid, x, 0, visited);
-      this.floodFill(grid, x, grid.length - 1, visited);
-    }
-    for (let y = 0; y < grid.length; y++) {
-      this.floodFill(grid, 0, y, visited);
-      this.floodFill(grid, grid[0].length - 1, y, visited);
-    }
-
-    this.printGrid(grid, visited);
-    const insideCount = grid.flat().filter((cell) => cell === ".").length; // Change this line
-    return insideCount.toString();
+    return input.toString();
   }
 }
 

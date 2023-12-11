@@ -26,6 +26,15 @@ O|L-7F-J|O
 O|II||II|O
 OL--JL--JO
 OOOOOOOOOO
+          
+          
+          
+          
+          
+          
+          
+          
+          
 Part 2 result:
 
-12
+46
