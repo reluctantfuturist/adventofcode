@@ -4,6 +4,12 @@ class Day10 extends Day {
   constructor() {
     super(10, 2023);
   }
+  private directions: { [key: string]: [number, number] } = {
+    N: [0, -1],
+    S: [0, 1],
+    E: [1, 0],
+    W: [-1, 0],
+  };
 
   private parseGrid(input: string): string[][] {
     return input.split("\n").map((line) => line.split(""));
@@ -32,12 +38,6 @@ class Day10 extends Day {
     startX: number,
     startY: number
   ): number {
-    const directions: { [key: string]: [number, number] } = {
-      N: [0, -1],
-      S: [0, 1],
-      E: [1, 0],
-      W: [-1, 0],
-    };
     let currentDirection = this.getInitialDirection(grid, startX, startY);
     let [x, y] = [startX, startY];
     let steps = 0;
@@ -103,7 +103,7 @@ class Day10 extends Day {
       }
 
       // Update position and distance
-      const [dx, dy] = directions[currentDirection];
+      const [dx, dy] = this.directions[currentDirection];
       x += dx;
       y += dy;
       steps++;
@@ -143,6 +143,40 @@ class Day10 extends Day {
     "L7",
   ];
 
+  private adjacentCellPair(
+    grid: string[][],
+    x: number,
+    y: number,
+    fromDirection: string
+  ) {
+    // Returns a pair of cells adjacent to the current cell with coordinates (x,y) in the direction of the flood
+    const adjacentCell1 =
+      fromDirection === "N"
+        ? grid[y + 1]?.[x]
+        : fromDirection === "S"
+        ? grid[y - 1]?.[x]
+        : fromDirection === "E"
+        ? grid[y]?.[x - 1]
+        : fromDirection === "W"
+        ? grid[y]?.[x + 1]
+        : null;
+
+    const adjacentCell2 =
+      fromDirection === "N"
+        ? grid[y + 1]?.[x - 1] || grid[y + 1]?.[x + 1]
+        : fromDirection === "S"
+        ? grid[y - 1]?.[x - 1] || grid[y - 1]?.[x + 1]
+        : fromDirection === "E"
+        ? grid[y - 1]?.[x - 1] || grid[y + 1]?.[x - 1]
+        : fromDirection === "W"
+        ? grid[y - 1]?.[x + 1] || grid[y + 1]?.[x + 1]
+        : null;
+
+    const pair = `${adjacentCell1}${adjacentCell2}`;
+
+    return pair;
+  }
+
   private floodFill(
     grid: string[][],
     x: number,
@@ -172,6 +206,7 @@ class Day10 extends Day {
       this.floodFill(grid, x + dx[i], y + dy[i], visited);
     }
   }
+
   solveForPartOne(input: string): string {
     const grid = this.parseGrid(input);
     const [startX, startY] = this.findStart(grid);

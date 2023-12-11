@@ -17,15 +17,15 @@ Part 1 result:
 7030
 
 
-OOOOOOOOOOO
-OS-------7O
-O|F-----7|O
-O||OOOOO||O
-O||OOOOO||O
-O|L-7OF-J|O
-O|II|O|II|O
-OL--JOL--JO
-OOOOOOOOOOO
+OOOOOOOOOO
+OS------7O
+O|F----7|O
+O||IIII||O
+O||IIII||O
+O|L-7F-J|O
+O|II||II|O
+OL--JL--JO
+OOOOOOOOOO
 Part 2 result:
 
-4
+12
