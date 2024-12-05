@@ -135,3 +135,12 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 build/
+2015/inputs/.DS_Store
+2015/src/.DS_Store
+2015/.DS_Store
+2023/inputs/.DS_Store
+2023/src/.DS_Store
+2023/.DS_Store
+.gitignore
+.DS_Store
+.DS_Store
